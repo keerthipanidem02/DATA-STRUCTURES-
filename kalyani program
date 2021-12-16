@@ -1,0 +1,37 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct names{
+   char a[30];
+   int k;
+};
+int main()
+{
+   int n,p,i,j,t;
+   scanf("%d%d",&n,&t);
+   struct names x[n];
+   struct names y;
+   for(i=0;i<n;i++){
+      scanf("%s",&x[i].a);
+      scanf("%d",&x[i].k);
+   }
+   for(i=0;i<n;i++)
+   {for(j=i+1;j<n;j++)
+   {if(x[j].k>x[i].k)
+   {y=x[j];
+   x[j]=x[i];
+   x[i]=y;
+   }
+  
+   if((x[j].k==x[i].k))
+   {p=strcmp(x[j].a,x[i].a);
+   if(p<0){
+      y=x[j];
+      x[j]=x[i];
+      x[i]=y;}
+   }
+   }
+   }
+   for(i=0;i<t;i++)
+   {printf("%s\n",x[i].a);
+   }
+   }

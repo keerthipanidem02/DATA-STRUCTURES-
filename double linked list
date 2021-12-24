@@ -1,0 +1,211 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct node
+{       struct node* prev;
+        int data;
+        struct node* next;
+}*newnode,*temp;
+struct node* head=NULL;
+struct node* tail=NULL;
+void Creation()
+{
+        int ch,value;
+        do{
+        newnode=(struct node*)malloc(sizeof(struct node));
+                printf("enter the value:");
+                scanf("%d",&value);
+                newnode->data=value;
+                newnode->next=NULL;
+                newnode->prev=NULL;
+                if(head==NULL)
+                {
+                        head=newnode;
+                        tail=newnode;
+                }
+                else
+                {
+                        tail->next=newnode;
+                        newnode->prev=tail;
+                        tail=newnode;
+                }
+                printf("enter 1 to continue, any number to exit\n");
+                fflush(stdin);
+                scanf("%d",&ch);
+        }while(ch==1);
+}
+
+void Display()
+{
+        temp=head;
+        printf("linked list values are:\n");
+        while(temp!=NULL)
+        {
+                printf("%d\n",temp->data);
+                temp=temp->next;
+        }
+}
+void Insertbeg()
+{ 
+int n;
+newnode=(struct node*)malloc(sizeof(struct node));
+printf("enter n to insert at beg");
+scanf("%d",&n);
+newnode->data=n;
+newnode->next=head;
+head->prev=newnode;
+newnode->prev=NULL;
+head=newnode;
+}
+void Insertend()
+{
+int n;
+newnode=(struct node*)malloc(sizeof(struct node));
+printf("enter n to insert at end");
+scanf("%d",&n);
+newnode->data=n;
+newnode->next=NULL;
+tail->next=newnode;
+newnode->prev=tail;
+tail=newnode;
+}
+void Insertpos()
+{
+   int i,p,n;
+   temp=head;
+   newnode=(struct node*)malloc(sizeof(struct node));
+   printf("enter n and p");
+   scanf("%d%d",&n,&p);
+   for(i=1;i<p-1;i++)
+   {
+   temp=temp->next;
+   }
+   newnode->data=n;
+   newnode->next=temp->next;
+   newnode->prev=temp;
+   temp->next->prev=newnode;
+   temp->next=newnode;
+}
+void Delbeg()
+{
+   temp=head;
+   head=head->next;
+   temp->next=NULL;
+   head->prev=NULL;
+}
+void Delend()
+{
+   temp=tail->prev;
+   temp->next=NULL;
+   tail->prev=NULL;
+   tail=temp;
+}
+void Delpos()
+{
+   temp=head;
+   int p,i;
+   printf("enter p");
+   scanf("%d",&p);
+   for(i=1;i<p-1;i++)
+   {
+   temp=temp->next;
+   }
+   temp->next->next->prev=temp;
+   temp->next=temp->next->next;
+}
+
+void Counting()
+{int c=0;
+   temp=head;
+   while(temp!=NULL)
+   {
+   c=c+1;
+   temp=temp->next;
+   }
+   printf("count of nodes in list:%d",c);
+}
+void Reverse()
+{temp=tail;
+while(temp->prev!=NULL)
+{
+   printf("%d",temp->data);
+   temp=temp->prev;
+}
+printf("%d",temp->data);
+}
+int main()
+{
+        int choice;
+        printf("1-creation\n2-insertbeg\n3-insertend\n4-insertpos\n5-delbeg\n6-delend\n7-delpos\n8-counting\n9-reverse");
+        printf("Enter your choice:");
+        scanf("%d",&choice);
+        switch(choice)
+        {
+                case 1:
+                        Creation();
+                        printf("created linked list\n");
+                        Display();
+                        break;
+                case 2: Creation();
+                        printf("before insertion at beggining\n");
+                        Display();
+                        Insertbeg();
+                        printf(" after inserted at beggining\n");
+                        Display();
+                        break;
+                case 3:
+                        Creation();
+                        printf("before insertion at end\n");
+                        Display();
+                        Insertend();
+                        printf(" after insertion at end\n");
+                        Display();
+                        break;
+                case 4:
+                        Creation();
+                        printf("before insertion at position\n");
+                        Display();
+                        Insertpos();
+                        printf(" after inserted at position\n");
+                        Display();
+                        break;
+                case 5: Creation();
+                        printf(" before deletion at beggining\n");
+                        Display();
+                        Delbeg();
+                        printf(" after deletion at beggining\n");
+                        Display();
+                        break;
+                case 6:
+                        Creation();
+                        printf(" before deletion at end\n");
+                        Display();
+                        Delend();
+                        printf(" after deletion at end\n");
+                        Display();
+                        break;
+                case 7:
+                        Creation();
+                        printf("before  deletion at position\n");
+                        Display();
+                        Delpos();
+                        printf("after deletion at position\n");
+                        Display();
+                        break;
+                case 8:
+                       Creation();
+                       Display();
+                       Counting();
+                case 9: 
+                       Creation();
+                       printf("before reversing ");
+                       Display();
+                       printf("\nafter reversing ");
+                       Reverse();
+                     
+
+
+
+
+        }
+}
+

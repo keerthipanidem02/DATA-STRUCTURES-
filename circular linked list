@@ -106,9 +106,18 @@ void delpos()
    {temp=temp->next;}
    temp->next=temp->next->next;
 }
+void count()
+{int c=0;
+    temp=head;
+    while(temp!=tail)
+    {c=c+1;
+    temp=temp->next;}
+    c=c+1;
+    printf("%d",c);
+}
 int main()
 {  int c;
-printf("1-creation\n2-insertbeg\n3-insertend\n4-insertpos\n5-delbeg\n6-delend\n7-delpos");
+printf("1-creation\n2-insertbeg\n3-insertend\n4-insertpos\n5-delbeg\n6-delend\n7-delpos\n8-count");
 printf("enter u r choice ");
 scanf("%d",&c);
 switch(c)
@@ -170,5 +179,12 @@ switch(c)
           printf("circular linked list values after deleted at pos are:\n");
           Display();
           break;
+    case 8:
+            Creation();
+            printf("linked list");
+             Display();
+            printf("no of nodes");
+             count();
+        
 }
 }

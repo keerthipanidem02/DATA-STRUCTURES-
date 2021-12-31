@@ -67,12 +67,12 @@ void add_polynomial(struct node *head1,struct node *head2)
         }
         else if(temp1->expo<temp2->expo)
         {
-            printf("%dx^%d",temp2->coeff,temp2->expo);
+            printf("+%dx^%d",temp2->coeff,temp2->expo);
             temp2=temp2->next;
         }
         else
         {
-            printf("%dx^%d",temp1->coeff,temp1->expo);
+            printf("+%dx^%d",temp1->coeff,temp1->expo);
             temp1=temp1->next;
         }
     }
@@ -80,7 +80,7 @@ void add_polynomial(struct node *head1,struct node *head2)
     {
         while(temp2!=NULL)
         {
-            printf("%dx^%d",temp2->coeff,temp2->expo);
+            printf("+%dx^%d",temp2->coeff,temp2->expo);
             temp2=temp2->next;
         }
     }
@@ -88,7 +88,7 @@ void add_polynomial(struct node *head1,struct node *head2)
     {
         while(temp1!=NULL)
         {
-            printf("%dx^%d",temp1->coeff,temp1->expo);
+            printf("+%dx^%d",temp1->coeff,temp1->expo);
             temp1=temp1->next;
         }
     }
@@ -103,18 +103,18 @@ void sub_polynomial(struct node *head1,struct node *head2)
     {
         if(temp1->expo==temp2->expo)
         {
-            printf("+%dx^%d",temp1->coeff-temp2->coeff,temp1->expo);
+            printf("+(%dx^%d)",temp1->coeff-temp2->coeff,temp1->expo);
             temp1=temp1->next;
             temp2=temp2->next;
         }
         else if(temp1->expo<temp2->expo)
         {
-            printf("%dx^%d",temp2->coeff,temp2->expo);
+            printf("+(%dx^%d)",temp2->coeff,temp2->expo);
             temp2=temp2->next;
         }
         else
         {
-            printf("%dx^%d",temp1->coeff,temp1->expo);
+            printf("+(%dx^%d)",temp1->coeff,temp1->expo);
             temp1=temp1->next;
         }
     }
@@ -122,7 +122,7 @@ void sub_polynomial(struct node *head1,struct node *head2)
     {
         while(temp2!=NULL)
         {
-            printf("%dx^%d",temp2->coeff,temp2->expo);
+            printf("+(%dx^%d)",temp2->coeff,temp2->expo);
             temp2=temp2->next;
         }
     }
@@ -130,7 +130,7 @@ void sub_polynomial(struct node *head1,struct node *head2)
     {
         while(temp1!=NULL)
         {
-            printf("%dx^%d",temp1->coeff,temp1->expo);
+            printf("+(%dx^%d)",temp1->coeff,temp1->expo);
             temp1=temp1->next;
         }
     }

@@ -115,6 +115,24 @@ void count()
     c=c+1;
     printf("%d",c);
 }
+void reverse ()
+{
+        struct node* temp=head;
+        struct node* prev=head;
+        struct node* current=head;
+        current=current->next;
+        temp=temp->next->next;
+        while(current!=head)
+        {
+            current->next=prev;
+            prev=current;
+            current=temp;
+            temp=temp->next;
+        }
+        head=prev;
+        current->next=head;
+}
+
 int main()
 {  int c;
 printf("1-creation\n2-insertbeg\n3-insertend\n4-insertpos\n5-delbeg\n6-delend\n7-delpos\n8-count");
@@ -185,6 +203,11 @@ switch(c)
              Display();
             printf("no of nodes");
              count();
-        
+    case 9:
+           Creation();
+           printf("linked list");
+           Display();
+           printf("reverse list");
+           reverse();
 }
 }

@@ -1,0 +1,214 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct node
+{
+        int data;
+        struct node* next;
+}*newnode,*temp;
+struct node* head=NULL;
+struct node* tail=NULL;
+void Creation()
+{
+        int ch,n;
+        do{
+           printf("enter n");
+           scanf("%d",&n);
+        newnode=(struct node*)malloc(sizeof(struct node));
+                newnode->data=n;
+                newnode->next=NULL;
+                if(head==NULL)
+                {
+                        head=newnode;
+                        tail=newnode;
+                        newnode->next=head;
+                }
+                else
+                {
+                        tail->next=newnode;
+                        tail=newnode;
+                        tail->next=head;
+                }
+                printf("enter 1 to continue, any number to exit\n");
+                fflush(stdin);
+                scanf("%d",&ch);
+        }while(ch==1);
+}
+
+void Display()
+{
+        temp=head;
+        while(temp->next!=head)
+        {
+         printf("%d\n",temp->data);
+         temp=temp->next;
+        }
+        printf("%d\n",temp->data);
+}
+void insertbeg()
+{
+   int  n;
+   printf("enter n to insert at end");
+   scanf("%d",&n);
+   newnode=(struct node*)malloc(sizeof(struct node));
+   newnode->data=n;
+   newnode->next=head;
+   tail->next=newnode;
+   head=newnode;
+}
+void insertend()
+{
+   int n;
+   printf("enter n to insert at end");
+   scanf("%d",&n);
+   newnode=(struct node*)malloc(sizeof(struct node));
+   newnode->data=n;
+   newnode->next=head;
+   tail->next=newnode;
+   tail=newnode;
+}
+void insertpos()
+{
+   int n,p,i;
+   temp=head;
+   printf("enter n p");
+   scanf("%d%d",&n,&p);
+   newnode=(struct node*)malloc(sizeof(struct node));
+   for(i=1;i<p-1;i++)
+   {temp=temp->next;}
+   newnode->data=n;
+   newnode->next=temp->next;
+   temp->next=newnode;
+   
+}
+void delbeg()
+{ 
+  temp=head;
+  temp=temp->next;
+  head=temp;
+  tail->next=temp;
+}
+void delend()
+{  temp=head;
+   while(temp->next!=tail)
+   { 
+      temp=temp->next;
+   }
+   temp->next=head;
+   tail=temp;
+}
+void delpos()
+{
+   temp=head;
+   int p,i;
+   printf("enter p");
+   scanf("%d",&p);
+   for(i=1;i<p-1;i++)
+   {temp=temp->next;}
+   temp->next=temp->next->next;
+}
+void count()
+{int c=0;
+    temp=head;
+    while(temp!=tail)
+    {c=c+1;
+    temp=temp->next;}
+    c=c+1;
+    printf("%d",c);
+}
+void reverse ()
+{
+        struct node* temp=head;
+        struct node* prev=head;
+        struct node* current=head;
+        current=current->next;
+        temp=temp->next->next;
+        while(current!=head)
+        {
+            current->next=prev;
+            prev=current;
+            current=temp;
+            temp=temp->next;
+        }
+        head=prev;
+        current->next=head;
+}
+
+int main()
+{  int c;
+printf("1-creation\n2-insertbeg\n3-insertend\n4-insertpos\n5-delbeg\n6-delend\n7-delpos\n8-count\n9-reverse");
+printf("enter u r choice ");
+scanf("%d",&c);
+switch(c)
+{
+   case 1:
+          Creation();
+          break;
+   case 2:
+          printf("insertbeg");
+          Creation();
+          printf(" circular linked list values are:\n");
+          Display();
+          insertbeg();
+          printf(" circular linked list values after insertion at beg are:\n");
+          Display();
+          break;
+   case 3:
+          printf("insertend");
+          Creation();
+          printf("circular linked list values are:\n");
+          Display();
+          insertend();
+          printf("circular linked list values after insertion at end  are:\n");
+          Display();
+          break;
+   case 4:
+          printf("insertpos");
+          Creation();
+          printf("circular linked list values are:\n");
+          Display();
+          insertpos();
+          printf("circular linked list values after insertion at pos  are:\n");
+          Display();
+          break;
+   case 5:
+          printf("delbeg");
+          Creation();
+          printf("circular linked list values are:\n");
+          Display();
+          delbeg();
+          printf("circular linked list values after deleted at beg are:\n");
+          Display();
+          break;
+   case 6:
+          printf("delend");
+          Creation();
+          printf("circular linked list values are:\n");
+          Display();
+          delend();
+          printf("circular linked list values after deleted at end are:\n");
+          Display();
+          break;
+   case 7:
+          printf("delpos");
+          Creation();
+          printf("circular linked list values are :\n");
+          Display();
+          delpos();
+          printf("circular linked list values after deleted at pos are:\n");
+          Display();
+          break;
+    case 8:
+            Creation();
+            printf("linked list");
+             Display();
+            printf("no of nodes");
+             count();
+    case 9:
+           Creation();
+           printf("linked list\n");
+           Display();
+           printf("reverse list\n");
+           reverse();
+           Display();
+}
+}

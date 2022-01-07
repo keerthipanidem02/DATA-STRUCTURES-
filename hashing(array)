@@ -1,0 +1,95 @@
+#include <stdio.h>
+#define size 10
+//intialisation step
+void init(int t[])
+{int i;
+    for(i=0;i<size;i++)
+    {
+       t[i]=0;
+    }
+}
+//hashing value
+int hashing(int key)
+{
+   return (key%10);
+}
+//search function
+void search(int t[])
+{  int y;
+    printf("enter search element");
+    scanf("%d",&y);
+   int e=hashing(y);
+   if(t[e]==y)
+   {
+      printf("element found");
+   }
+   else 
+   {
+      printf("element not found");
+   }
+}
+void insert(int t[])
+{int n,hash,ch;
+   printf("enter elements \n");
+    do{
+       printf("enter n");
+       scanf("%d",&n);
+       hash=hashing(n);
+       t[hash]=n;
+       printf("enter 1 to continue");
+       scanf("%d",&ch);
+    }while(ch==1);
+}
+//print function
+void print(int t[])
+{int i;
+  for(i=0;i<size;i++)
+    {
+    
+            printf("t[%d] has element %d\n",i,t[i]);
+       
+    }  
+}
+void del(int t[])
+{int d,i;
+printf("enter delete element");
+scanf("%d",&d);
+    int hash=hashing(d);
+        if(t[hash]==d)
+        {
+            t[hash]=0;
+        }
+    else{ printf("element not found to delete");
+        
+    }
+}
+int main()
+{int c=0;
+
+int t[size];
+while(c<6)
+{
+printf("enter u r choice:");
+printf("1-init\n2-insert\n3-search\n4-print\n5-delete");
+scanf("%d",&c);
+switch(c)
+{
+ case 1:
+        init(t);
+        break;
+ case 2:
+        insert(t);
+        break; 
+ case 3:
+        search(t);
+        break;
+ case 4:
+        printf("array elements are:\n");
+        print(t);
+        break;
+ case 5:
+        del(t);
+        break;
+}   
+}
+}

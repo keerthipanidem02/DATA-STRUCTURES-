@@ -1,68 +1,104 @@
 #include <stdio.h>
-#include<stdlib.h>
+#include <stdlib.h>
 #define size 10
 struct node
 {
-    int data;
-    struct node *next;
-}*newnode,*temp,*head[size]={NULL};
-void create()
+   int data;
+   struct node *next;
+}*newnode,*head[size]={NULL},*temp;
+//insert element
+void insert()
 {
-    int hash,key,ch;
-    do{
-    printf("enter value:");
-    scanf("%d",&key);
-    hash=key%size;
-    newnode=(struct node*)malloc(sizeof(struct node));
-    newnode->data=key;
-    newnode->next=NULL;
-    if(head[key]==NULL)
-    {
-        head[key]=newnode;
-    }
-    else
-    {
-        temp=head[key];
-        while(temp->next!=NULL)
-        {
+int i,key,choice;
+   do{
+   printf("Enter a value to insert into hash table: ");
+   scanf("%d",&key);
+   i=key%size;
+   newnode=(struct node *)malloc(sizeof(struct node));
+   newnode->data=key;
+   newnode->next = NULL;
+   if(head[i] == NULL)
+   head[i] = newnode;
+   else
+   {
+      temp=head[i];
+      while(temp->next != NULL)
+         {
             temp=temp->next;
-        }
-        temp->next=newnode;
-    }
+         }
+      temp->next=newnode;
+   }
     printf("enter 1 to continue");
-    fflush(stdin);
-    scanf("%d",&ch);
-    }while(ch==1);
+    scanf("%d",&choice);
+   }while(choice==1);
 }
+//search
+void search()
+{
+int key,i;
+   printf("Enter the element to be searched: ");
+   scanf("%d",&key);
+   i=key%size;
+   if(head[i] == NULL)
+   {
+      printf("Search element not found");
+   }
+   else
+   {
+      for(temp=head[i];temp!=NULL;temp=temp->next)
+      {
+         if(temp->data == key)
+         {
+            printf("Search element found");
+            break;
+         }
+         
+      }
+      if(temp==NULL)
+      {
+         printf("Search element not found");
+      }
+   }
+}
+//display
 void display()
 {
-    int i;
-    for(i=0;i<size;i++)
-    {
-        if(head[i]!=NULL)
-        {
-            for(temp=head[i];temp->next!=NULL;temp=temp->next)
-            {
-                printf("%d",temp->data);
-            }
-        }
-    }
+int i;
+for(i=0;i<size;i++)
+{
+   printf("\nvalue at index %d is: ",i);
+   if(head[i] == NULL)
+   {
+      printf("no value");
+   }
+   else
+   {
+   for(temp=head[i];temp!=NULL;temp=temp->next)
+   {
+      printf("%d->",temp->data);
+   }
+   }
+}
 }
 int main()
 {
-    int ch;
-    printf("enter u r choice\n");
-    printf("1-create\n2-display");
-    scanf("%d",&ch);
-    while(ch<3)
-    {
-    switch(ch)
-    { case 1:
-            create();
-            break;
-     case 2:
-            display();
-            break;
-    }
-    }
+int t,key;
+while(1)
+{
+printf("\nenter u r choice");
+printf("\n1.Insert\n2.Display\n3.Search\n");
+scanf("%d",&t);
+switch(t)
+{
+case 1:
+       insert();
+       break;
+case 2:
+       display();
+       break;
+case 3:
+       search();
+       break;
+}
+}
 }

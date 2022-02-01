@@ -1,0 +1,138 @@
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<ctype.h>    
+#include<string.h>
+
+#define SIZE 100
+
+char t[SIZE];
+int top = -1;
+
+void push(char item)
+{
+	if(top >= SIZE-1)
+	{
+		printf("\nStack Overflow.");
+	}
+	else
+	{
+		top++;
+		t[top] = item;
+	}
+}
+
+char pop()
+{
+	char item ;
+
+	if(top <0)
+	{
+		printf("stack under flow");
+	}
+	else
+	{
+		item = t[top];
+		top--;
+		return(item);
+	}
+}
+
+int is_operator(char op)
+{
+	if(op == '^' || op == '*' || op == '/' || op == '+' || op=='-')
+	{
+		return 1;
+	}
+	else
+	{
+	return 0;
+	}
+}
+
+int precedence(char op)
+{
+	if(op == '^')
+	{
+		return(3);
+	}
+	else if(op == '*' || op== '/')
+	{
+		return(2);
+	}
+	else if(op== '+' || op == '-')         
+	{
+		return(1);
+	}
+	else
+	{
+		return(0);
+	}
+}
+
+void InfixToPostfix(char infix[], char postfix[])
+{ 
+	int i, j;
+	char item;
+	char x;
+
+	push('(');                            
+	strcat(infix,")");                  
+
+	i=0;
+	j=0;
+	item=infix[i];         
+
+	while(item != '\0')        
+	{
+		if(item == '(')
+		{
+			push(item);
+		}
+		else if( isdigit(item) || isalpha(item))
+		{
+			postfix[j] = item;              
+			j++;
+		}
+		else if(is_operator(item) == 1)       
+		{
+			x=pop();
+			while(is_operator(x) == 1 && precedence(x)>= precedence(item))
+			{
+				postfix[j] = x;                  
+				j++;
+				x = pop();                
+			}
+			push(x);
+			push(item);             
+		}
+		else if(item == ')')        
+		{
+			x = pop();                   
+			while(x != '(')               
+			{
+				postfix[j] = x;
+				j++;
+				x = pop();
+			}
+		}
+		else
+		{ break;
+		}
+		i++;
+item = infix[i]; 
+	} 
+postfix[j] = '\0'; 
+}
+int main()
+{
+	char infix[SIZE], postfix[SIZE];
+	printf("\nEnter Infix expression : ");
+	gets(infix);
+
+	InfixToPostfix(infix,postfix); 
+	printf("infix Expression: (");
+	puts(infix);
+	printf("Postfix Expression: ");
+	puts(postfix);                  
+}

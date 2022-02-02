@@ -52,7 +52,7 @@ int is_operator(char op)
 
 int precedence(char op)
 {
-	if(op == '^')
+	if(op == '^' || op == '%)
 	{
 		return(3);
 	}

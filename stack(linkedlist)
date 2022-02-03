@@ -48,7 +48,7 @@ void display()
 int main()
 {
    int choice=0;
-   while(choice<2)
+   while(choice<3)
    {
       printf("1-push & display\n2-pop & display");
       printf("\nenter u r choice\n");

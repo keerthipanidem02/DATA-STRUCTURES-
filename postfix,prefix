@@ -1,0 +1,97 @@
+
+#include<stdio.h>  
+#include<stdlib.h>
+#include<ctype.h>  
+#include<string.h>  
+#define SIZE 100      
+int top=-1;            
+char  stack[SIZE];    
+void push(char  item)  
+{                      
+    if(top>=SIZE-1)    
+    {                  
+        printf("stack over flow\n");      
+        }                
+        else{            
+            top++;        
+            stack[top]=item;  
+            }              
+            }              
+char pop()      
+            {char item;    
+            if(top<0)    
+            {        
+                printf("stack underflow\n");      
+                                printf("enter crt expression\n");
+                                exit(1);  
+                                }        
+                                i++;    
+                                item=infix[i];
+                                }        
+                                    postfix[j]='\0';
+}
+
+void reverse(char infix[],char t[])  
+{            
+    int p=0,q=0;
+    while(infix[p]!='\0')  
+    {              
+        p++;        
+        }              
+        p--;          
+    while(p>=0)  
+        {if(infix[p]==')')  
+        {                
+            t[q]='(';
+            p--;
+            q++;
+           
+            }          
+            else if(infix[p]=='(')    
+            {                
+                t[q]=')';
+                p--;
+                q++;
+                }        
+                else      
+                {        
+                    t[q]=infix[p];    
+                    p--;
+                    q++;
+                    }          
+                    }        
+                    t[q++]='\0';      
+                    }        
+int main()  
+{    int choice=0;    
+     char infix[SIZE],postfix[SIZE],t[SIZE],prefix[SIZE];
+    printf("enter infix expression\n");
+    gets(infix);
+    while(choice<3)
+    {printf("enter \n1-infix to postfix\n2-infix to prefix\n");
+    printf("entre u r choice\n");
+    scanf("%d",&choice);
+    switch(choice)
+{case 1:
+
+    infixtopostfix(infix,postfix);
+    printf("infix expression is: (");  
+    puts(infix);                
+    printf("postfix expression is: ");  
+    puts(postfix);      
+break;
+case 2:
+     reverse(infix,t);            
+     infixtopostfix(t,postfix);  
+     reverse(postfix,prefix);    
+     printf("infix expression is: ");  
+     puts(infix);                      
+     printf("prefix expression is:");  
+     puts(prefix);      
+     break;
+case 3:
+     printf("exit");
+     break;
+}
+}
+}   

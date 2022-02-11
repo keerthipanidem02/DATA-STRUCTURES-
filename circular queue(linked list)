@@ -1,0 +1,66 @@
+
+#include<stdio.h>
+ struct node{
+    int data;
+    struct node *next;
+ }*temp,*newnode,*rear=NULL,*front=NULL;
+void enqueue()
+{
+   int n,ch;
+   do{
+   newnode=(struct node*)malloc(sizeof(struct node));
+   printf("enter value: ");
+   scanf("%d",&n);
+   newnode->data=n;
+   newnode->next=NULL;
+   if(rear==NULL && front==NULL)
+   {
+      rear=newnode;
+      front=newnode;
+   }
+   else{
+      rear->next=newnode;
+      rear=newnode;
+   }
+   printf("enter 1 to continue:");
+   scanf("%d",&ch);
+   }while(ch==1);
+}
+void dequeue()
+{
+   temp=front;
+   printf("deleted element:  %d",temp->data);
+   front=front->next;
+   temp->next=NULL;
+}
+void display()
+{  printf("circular queue elements are:\n");
+   temp=front;
+   while(temp!=NULL)
+   {
+      printf("%d\n",temp->data);
+      temp=temp->next;
+   }
+}
+void main()
+{
+int choice=0;
+while(choice<4)
+{
+   printf("\n1-enqueue\n2-dequeue\n3-display\n");
+   printf("enter u r choice\n");
+   scanf("%d",&choice);
+   switch(choice)
+   {
+      case 1:
+             enqueue();
+             break;
+      case 2:
+             dequeue();
+             break;
+      case 3:
+             display();
+             break;
+   }
+}
+}

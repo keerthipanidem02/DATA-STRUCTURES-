@@ -34,7 +34,7 @@ void dequeue()
    temp->next=NULL;
 }
 void display()
-{ 
+{  printf("circular queue elements are:\n");
    temp=front;
    while(temp!=NULL)
    {
@@ -49,7 +49,7 @@ while(choice<4)
 {
    printf("\n1-enqueue\n2-dequeue\n3-display\n");
    printf("enter u r choice\n");
-   scanf("%d\n",&choice);
+   scanf("%d",&choice);
    switch(choice)
    {
       case 1:

@@ -1,0 +1,186 @@
+#include<stdio.h>
+
+#define s 4
+
+int a[s],r=-1,f=-1,x;
+
+void enqueuefront(int x)
+{
+   if((f==0 && r==s-1) || f==r+1)
+   {
+      printf("\nqueue is full\n");
+   }
+   else if(f==-1 && r==-1)
+   {
+      f=0;
+      
+      r=0;
+      
+      a[f]=x;
+   }
+   else if(f==0)
+   {
+      f=s-1;
+      
+      a[f]=x;
+   }
+   else
+   {
+      f--;
+      
+      a[f]=x;
+   }
+}
+
+void enqueuerear(int x)
+{
+   if((f==0 && r==s-1) || f==r+1)
+   {
+      printf("\nqueue is full\n");
+   }
+   else if(f==-1 && r==-1)
+   {
+      f=0;
+      
+      r=0;
+      
+      a[r]=x;
+   }
+   else if(r==s-1)
+   {
+      r=0;
+      
+      a[r]=x;
+   }
+   else
+   {
+      r++;
+      
+      a[r]=x;
+   }
+}
+
+void dequeuefront()
+{
+   if(f==-1 && r==-1)
+   {
+      printf("\nqueue is empty\n");
+   }
+   else if(f==r)
+   {
+      printf("\nelement deleted at front is: %d\n",a[f]);
+      
+      f=-1;
+      
+      r=-1;
+   }
+   else if(f==s-1)
+   {
+      printf("\nelement deleted at front is: %d\n",a[f]);
+      
+      f=0;
+   }
+   else
+   {
+      printf("\nelement deleted at front is: %d\n",a[f]);
+      
+      f++;
+   }
+}
+
+void dequeuerear()
+{
+   if(f==-1 && r==-1)
+   {
+      printf("\nqueue is empty\n");
+   }
+   else if(f==r)
+   {
+      printf("\nelement deleted at rear is: %d\n",a[r]);
+      
+      f=-1;
+      
+      r=-1;
+   }
+   else if(r==0)
+   {
+      printf("\nelement deleted at rear is: %d\n",a[r]);
+      
+      r=s-1;
+   }
+   else
+   {
+      printf("\nelement deleted at rear is: %d\n",a[r]);
+      
+      r--;
+   }
+}
+
+void getfront()
+{
+   printf("\nfront %d value is: %d\n",f,a[f]);
+}
+
+void getrear()
+{
+   printf("\nrear %d value is: %d\n",r,a[r]);
+}
+
+void display()
+{
+  int i;
+  
+  i=f;
+  
+  while(i!=r)
+  {
+     printf("a[%d] = %d\n",i,a[i]);
+     
+     i=(i+1)%s;
+  }
+  printf("a[%d] = %d\n",r,a[r]);
+}
+
+void main()
+{
+   int choice=0,x;
+   
+   while(choice<8)
+   {
+      printf("\n1-enqueuefront\n2-enqueuerear\n3-dequeuefront\n4-dequeuerear\n5-getfront\n6-getrear\n7-display\n");
+      
+      printf("enter u r choice\n");
+      
+      scanf("%d",&choice);
+      
+      switch(choice)
+      {
+         case 1:
+                printf("enter value\n");
+                scanf("%d",&x);
+                enqueuefront(x);
+                break;
+         case 2:
+                printf("enter value\n");
+                scanf("%d",&x);
+                enqueuerear(x);
+                break;
+         case 3:
+                dequeuefront();
+                break;
+         case 4:
+                dequeuerear();
+                break;
+         case 5:
+                getfront();
+                break;
+         case 6:
+                getrear();
+                break;
+         case 7:
+                printf("\nelements in dqueue are:\n");
+                display();
+                break;
+      }
+   }
+}

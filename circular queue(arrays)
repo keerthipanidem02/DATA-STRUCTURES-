@@ -57,8 +57,15 @@ void display()
          }
       }
    }
-   else{
-      return ;
+   else if(f==r && c!=0)
+   {
+      for(i=f;i<s;i++)
+      {
+         printf("%d\n",a[i]);
+      }
+   }
+   else {
+      return;
    }
 }
 void main()
@@ -68,7 +75,7 @@ void main()
     {
         printf("\n1-enqueue\n2-dequeue\n3-display\n");
         printf("enter ur choice\n");
-        scanf("%d\n",&choice);
+        scanf("%d",&choice);
         switch(choice)
         {
             case 1:

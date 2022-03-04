@@ -1,0 +1,127 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct node {
+  int data;
+  struct node *left, *right;
+}*newnode;
+
+struct node *newNode(int item) {
+  newnode = (struct node *)malloc(sizeof(struct node));
+  newnode->data = item;
+  newnode->left = NULL;
+  newnode->right = NULL;
+  return newnode;
+}
+
+void inorder(struct node *root) {
+  if (root != NULL) {
+    inorder(root->left);
+    printf("%d ", root->data);
+    inorder(root->right);
+  }
+}
+void preorder(struct node *root) {
+  if (root != NULL) {
+    printf("%d ", root->data);
+    preorder(root->left);
+    preorder(root->right);
+  }
+}
+void postorder(struct node *root) {
+  if (root != NULL) {
+    postorder(root->left);
+    postorder(root->right);
+    printf("%d ", root->data);
+  }
+}
+
+struct node *insert(struct node *node, int data) {
+  if (node == NULL) {
+      return newNode(data);
+}
+  if (data < node->data)
+ {   node->left = insert(node->left,data);
+  }
+  else
+  {
+    node->right = insert(node->right,data);
+  }
+return node;
+}
+
+struct node* search(struct node* root,int k)
+{
+    if(root==NULL)
+    {
+        printf("element not found\n");
+        return root;
+    }
+    if(root->data==k)
+    {
+        return root;
+        printf("element found\n");
+    }
+    else if(root->data>k)
+    {
+        return search(root->left,k);
+    }
+    else if(root->data<k)
+    {
+        return search(root->right,k);
+    }
+    
+}
+struct node * minelement(struct node * root)
+{
+    if (root==NULL)
+    {
+        return NULL;
+    }
+    else if(root->left!=NULL)
+    {
+        return minelement(root->left);
+    }
+    else {
+        return root;
+    }
+}
+
+int main()
+{struct node *root=NULL;
+int c,n,choice=0,k;
+printf("\n1-insert\n2-inorder\n3-preorder\n4-postorder\n5-search\n");
+while(choice<6){
+  printf("\nenter u r choice\n");  
+  scanf("%d",&choice);
+  switch(choice)
+  {
+case 1:
+do{
+    printf("enter value:");
+    scanf("%d",&n);
+    root=insert(root,n);
+    printf("enter 1 to continue:");
+    scanf("%d",&c);
+}while(c==1);
+break;
+case 2:
+ printf("Inorder traversal: ");
+  inorder(root);
+  break;
+case 3:
+printf("preorder traversal: ");
+preorder(root);
+break;
+case 4:
+printf("4-postorder traversal: ");
+postorder(root);
+break;
+case 5:
+printf("enter element to search");
+scanf("%d",&k);
+root=search(root,k);
+break;
+}
+}
+}

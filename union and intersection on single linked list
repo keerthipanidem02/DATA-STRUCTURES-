@@ -82,6 +82,33 @@ struct node* llu(struct node*a,struct node *b)
    }
 return c;
 }
+struct node* lli(struct node*a,struct node*b)
+{
+   t1=a;
+   head=NULL;
+   tail=NULL;
+  while(t1!=NULL)
+  {int x=ispresent(a,t1->data);
+   int y=ispresent(b,t1->data);
+   if(x==y)
+   {
+      newnode=(struct node*)malloc(sizeof(struct node));
+                newnode->data=t1->data;
+                newnode->next=NULL;
+                if(head==NULL)
+                {
+                   head=newnode;
+                   tail=newnode;
+                }
+                else{
+                   tail->next=newnode;
+                   tail=newnode;
+                }
+   }
+   t1=t1->next;
+}
+return head;
+}
 int ispresent(struct node *head,int k)
 {
    temp=head;
@@ -102,7 +129,8 @@ void main()
    struct node *a=NULL;
       struct node *b=NULL;
        struct node *uni=NULL;
-      while(choice<7)
+       struct node *inter=NULL;
+      while(choice<9)
       {
    printf("enter choice");
    scanf("%d",&choice);
@@ -126,9 +154,17 @@ void main()
       uni=llu(a,b);
       break;
       case 6:
-      printf("llu");
+      printf("llu\n");
       Display(uni);
       break;
+      case 7:
+      inter=lli(a,b);
+      break;
+      case 8:
+      printf("lli\n");
+      Display(inter);
+      break;
+      
    } 
    }
 }

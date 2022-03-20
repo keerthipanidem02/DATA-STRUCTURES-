@@ -1,0 +1,136 @@
+
+#include<stdio.h>
+#include<stdlib.h>
+struct node
+{
+        int data;
+        struct node* next;
+}*newnode,*temp,*t1,*t2;
+struct node* head=NULL;
+struct node* tail=NULL;
+struct node* Creation(struct node * head)
+{
+        int ch,value;
+        do{
+        newnode=(struct node*)malloc(sizeof(struct node));
+                printf("enter the value:");
+                scanf("%d",&value);
+                newnode->data=value;
+                newnode->next=NULL;
+                if(head==NULL)
+                {
+                        head=newnode;
+                        tail=newnode;
+                }
+                else
+                {
+                        tail->next=newnode;
+                        tail=newnode;
+                }
+                printf("enter 1 to continue, any number to exit\n");
+                fflush(stdin);
+                scanf("%d",&ch);
+        }while(ch==1);
+return head;
+}
+
+void Display(struct node *head)
+{
+        temp=head;
+        printf("linked list values are:\n");
+        while(temp!=NULL)
+        {
+                printf("%d\n",temp->data);
+                temp=temp->next;
+        }
+}
+struct node* llu(struct node*a,struct node *b)
+{struct node*c=NULL;
+   t2=b;
+   t1=a;
+   head=NULL;
+   tail=NULL;
+   while(t1!=NULL)
+   { newnode=(struct node*)malloc(sizeof(struct node));
+                newnode->data=t1->data;
+                newnode->next=NULL;
+                if(head==NULL)
+                {
+                   head=newnode;
+                   tail=newnode;
+                }
+                else{
+                   tail->next=newnode;
+                   tail=newnode;
+                }
+                t1=t1->next;
+   }
+   c=head;
+   while(t2!=NULL)
+   {
+      if(ispresent(c,t2->data)==0)
+      {  newnode=(struct node*)malloc(sizeof(struct node));
+         tail->next=newnode;
+         newnode->data=t2->data;
+         newnode->next=NULL;
+         tail=tail->next;
+         t2=t2->next;
+      }
+      else{
+         t2=t2->next;
+      }
+   }
+return c;
+}
+int ispresent(struct node *head,int k)
+{
+   temp=head;
+   while(temp!=NULL)
+   {
+      if(temp->data==k)
+      {
+         return 1;
+      }
+      temp=temp->next;
+   }
+        return 0;
+}
+void main()
+{
+   int choice=0;
+   struct node* head=NULL;
+   struct node *a=NULL;
+      struct node *b=NULL;
+       struct node *uni=NULL;
+      while(choice<7)
+      {
+   printf("enter choice");
+   scanf("%d",&choice);
+   switch(choice)
+   {
+      case 1:printf(" 1st ll");
+      a=Creation(head);
+      break;
+      case 2:printf(" 2nd ll");
+      b=Creation(head);
+      break;
+      case 3:
+      printf("1st ll");
+      Display(a);
+      break;
+      case 4:
+      printf("2nd ll");
+      Display(b);
+      break;
+      case 5:
+      uni=llu(a,b);
+      break;
+      case 6:
+      printf("llu");
+      Display(uni);
+      break;
+   } 
+   }
+}
+
+

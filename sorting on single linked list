@@ -1,0 +1,93 @@
+
+#include<stdio.h>
+#include<stdlib.h>
+struct node
+{
+        int data;
+        struct node* next;
+}*newnode,*temp,*t1,*t2;
+struct node* head=NULL;
+struct node* tail=NULL;
+struct node* Creation(struct node * head)
+{
+        int ch,value;
+        do{
+        newnode=(struct node*)malloc(sizeof(struct node));
+                printf("enter the value:");
+                scanf("%d",&value);
+                newnode->data=value;
+                newnode->next=NULL;
+                if(head==NULL)
+                {
+                        head=newnode;
+                        tail=newnode;
+                }
+                else
+                {
+                        tail->next=newnode;
+                        tail=newnode;
+                }
+                printf("enter 1 to continue, any number to exit\n");
+                fflush(stdin);
+                scanf("%d",&ch);
+        }while(ch==1);
+return head;
+}
+
+struct node *sorting(struct node * head)
+{
+   int x;
+   t1=head;
+   while(t1!=NULL)
+   {
+      t2=t1->next;
+      while(t2!=NULL)
+      {
+         if(t1->data>t2->data)
+         {
+            x=t1->data;
+            t1->data=t2->data;
+            t2->data=x;
+         }
+         t2=t2->next;
+      }
+      t1=t1->next;
+   }
+ t1=head;
+ return t1;
+}
+void display(struct node *head)
+{
+     temp=head;
+        while(temp!=NULL)
+        {
+                printf("%d\n",temp->data);
+                temp=temp->next;
+        }
+}
+void main()
+{struct node* head=NULL;
+   struct node *a=NULL;
+    struct node *b=NULL;
+   int c=0;
+   while(c<4)
+   {
+      printf("enter choice");
+      scanf("%d",&c);
+      switch(c)
+      {
+         case 1:
+         a=Creation(head);
+         break;
+         case 2:
+         printf("before sorting\n");
+         display(a);
+         break;
+         case 3:
+         printf("after sorting\n");
+         b=sorting(a);
+         display(b);
+         break;
+      }
+   }
+}
